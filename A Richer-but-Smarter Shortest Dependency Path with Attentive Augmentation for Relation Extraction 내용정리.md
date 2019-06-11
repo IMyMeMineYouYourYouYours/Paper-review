@@ -1,6 +1,6 @@
 # A Richer-but-Smarter Shortest Dependency Path with Attentive Augmentation for Relation Extraction 내용정리
 
-## Abstract
+## 0. Abstract
 
 - 관계 추출의 두개의 공통된 접근법
   1. SDP 이용
@@ -12,7 +12,7 @@
 - sentence에는 LSTM 네트워크 모델을 이용하고 RbSP에서는 CNN을 통합해서 deep neural model을 개발
 - dataset으로 SemEval-2010 dataset 이용
 
-## Introduction
+## 1. Introduction
 
 ### 소개
 
@@ -39,7 +39,7 @@
 - context vector들의 feature들을 잡아내는 kernel filter를 사용한 attention 메커니즘
 - 제안한 RbSP와 다른 유형의 linguistic, architectural feature를 사용한 DNN architecture 제안
 
-## Related Work
+## 2. Related Work
 
 - Unsupervised, semi-supervised, distant supervision 기법들이 relation extraction task에 효과적이었다.
 - 이 논문은 정확도가 보통 높은 supervised 기법들에 대해 주목
@@ -48,10 +48,53 @@
 - SDP가 relation extraction을 위한 효율적인 정보를 가지고 있어서 많은 연구에서 사용하게 됨 ex) negative sampling, BRCNN(directed shortest path)
 - 최근에는 attention 메커니즘을 이용해 의미있는 정보에 집중하는 model도 있다.
 
-## Richer-but-Smarter SDP
+## 3. Richer-but-Smarter SDP
 
 - 이전에 말했듯이 SDP의 함축된 정보를 이용
 - 단순한 SDP구조는 SDP에 나타나지 않는 유용한 정보가 있어서 약점이 된다.
 - 이러한 놓친 정보들은 관계를 더 정확하게 나타내기 위해 활용 될 수 있다.
-- 
+
+![](.\png\캡처.PNG)
+
+(i) We put the soured [cream]e1 in the butter [churn]e2 and started stirring it.
+(ii) The agitating [students]e1 also put up a [barricade]e2 on the Dhaka-Mymensingh highway.
+
+- 예를들어 다른 종류의 relation type이 있는데 두 문장 모두 두개의 entity path에 put 단어만 있다. 그러나 두 개의 SDP에서 put의 의미는 완벽히 다르다. 이런 경우에 기계는 두 개의 SDP를 구별해내기가 어렵다.
+
+- 이 문제를 해결하기 위해 child node를 SDP에 포함시키는것이 relation classification을 위한 추가적인 정보를 제공한다.
+
+## 4. Proposed Model
+
+![](.\png\캡처1.PNG)
+
+RbSP의 전체 모델
+
+### SDP Representation
+
+![](.\png\캡처2.PNG)
+
+- dependency relation을 위해 dependency type과 dependency direction을 concatenate해서 embedding을 형성
+- 최종적으로 D-dimensional representation
+
+$$
+d_i = tanh([d_i^{typ}⊕d_i^{dir}]W_d+b_d)
+$$
+
+- token representation을 위해 4개 타입의 embedding을 이용한다.
+  - ___Pre-trained fastText embeddings___
+  - ___Character-based embeddings___
+  - ___POS tag embeddings___
+  - ___WordNet embeddings___
+
+- 최종적으로 X-dimensional vector형태의 representation이 된다.
+
+$$
+x_i = tanh([t_i ⊕a_i ⊕h_i]W_x + b_x)
+$$
+
+### Multi-layer attention with Kernel filters
+
+- 정확환 augmented information을 child nodes로 부터 뽑기 위해 multi-layer attention with kernel filters 구조를 제안한다.
+
+![](.\png\캡처3.PNG)
 
