@@ -92,3 +92,98 @@ RbSP의 전체 모델
 
 ![](./png/캡처3.PNG)
 
+-------
+
+#### Input
+
+- 하나의 token t 와 그것들의 child node들이 주어지면, 첫번째로 모든 토근을 vector로 표현한다.
+- Token t는 word embedding과 part-of-speech tag embedding으로 concatenation한 vector로 표현한다.
+- children의 token의 모든 정보를 활용하기 위해 token embedding뿐만 아니라 dependency relation 정보를 이용
+- 추가적으로 child node와 target token과의 정보를 잡기 위해서 position embeddings 사용
+
+#### Multi layer attention
+
+- self-attentive network 부모노드의 정보와 distance를 concatenation 해서 계산
+
+![](./png/캡처5.PNG)
+
+- 최종 self-attentive context vector
+
+![](./png/캡6.PNG)
+
+- heuristic attentive layer based on the distances
+
+![](./png/캡처7.PNG)
+
+- Kernel filters
+
+![](./png/캡처8.PNG)
+
+- The final augmented (max-pooling) 
+
+![](./png/캡처9.PNG)
+
+### CNN on RbSP
+
+- SDP representation layer를 거친 후에 input SDP는 이렇게 변화했다.
+
+![](./png/캡처10.PNG)
+
+- 일반적으로 i:i+j까지 concatenation을 한다.(j tokens, j-1 dependency relation)
+
+![](./png/캡처11.PNG)
+
+- r 사이즈의 window에서 k개의 필터로 convolution operation을 한다. 그후 max-pooling 방식을 통해 가장 중요한 feature를 모은다.
+- 그 후 softmax를 거쳐서 prediction
+
+### Model Training
+
+- Loss function
+
+![](./png/캡처12.PNG)
+
+### Additional techniques
+
+- pre-trained fastText word embedding 사용
+- dependency embedding, word character, POS tags를 위한 look-up tabel은 랜덤하게 Glorot initializer를 사용해 구성 그리고 training 하면서 학습됨
+
+## 5. Experimental Evaluation
+
+### Dataset
+
+- SemEval-2010 Task 8 dataset
+- Precision, Recall, F1 score로 비교
+
+### Performance of the RbSP Model
+
+![](./png/캡처13.PNG)
+
+### Contribution of different components
+
+- ablation study
+
+![](./png/캡처14.PNG)
+
+### Results Analysis
+
+![](./png/캡처15.PNG)
+
+![](./png/캡처16.PNG)
+
+## 6. Conclusions
+
+In this paper, we have presented RbSP, a novel representation of relation between two nominals in a
+sentence that overcomes the disadvantages of traditional SDP. Our RbSP is created by using multilayer attention to choose relevant information to
+augment a token in SDP from its child nodes. We
+also improved the attention mechanisms with kernel filters to capture the features on the context
+vector. We evaluated our model on SemEval-2010
+task 8 dataset, then compared the results with very
+recent state-of-the-art models. Experiments were
+also constructed to verify the rationality and effectiveness of each of the model’s components and
+information sources. The results demonstrated
+the advantage and robustness of our model, includes the LSTM on the original sentence, combination of self-attention and heuristic mechanisms
+and several augmentation inputs as well. The analysis of the results still points our some weaknesses
+of the model. We aim to address them and further extensions of our model in future works. We
+released our source code and data on the public
+repository to support the re-producibility of our
+work and facilitate other related studies.
