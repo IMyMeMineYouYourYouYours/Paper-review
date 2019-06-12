@@ -1,3 +1,5 @@
+html header: <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 # A Richer-but-Smarter Shortest Dependency Path with Attentive Augmentation for Relation Extraction 내용정리
 
 ## 0. Abstract
