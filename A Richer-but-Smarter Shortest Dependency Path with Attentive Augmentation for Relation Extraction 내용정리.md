@@ -1,5 +1,3 @@
-html header: <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
 # A Richer-but-Smarter Shortest Dependency Path with Attentive Augmentation for Relation Extraction 내용정리
 
 ## 0. Abstract
@@ -78,7 +76,7 @@ RbSP의 전체 모델
 - dependency relation을 위해 dependency type과 dependency direction을 concatenate해서 embedding을 형성
 - 최종적으로 D-dimensional representation
 
-$$d_i = tanh([d_i^{typ}⊕d_i^{dir}]W_d+b_d)$$
+https://latex.codecogs.com/gif.latex?d_i%20%3D%20tanh%28%5Bd_i%5E%7Btyp%7D%5Coplus%20d_i%5E%7Bdir%7D%5DW_d&plus;b_d%29
 
 - token representation을 위해 4개 타입의 embedding을 이용한다.
   - ___Pre-trained fastText embeddings___
@@ -88,7 +86,7 @@ $$d_i = tanh([d_i^{typ}⊕d_i^{dir}]W_d+b_d)$$
 
 - 최종적으로 X-dimensional vector형태의 representation이 된다.
 
-$$x_i = tanh([t_i ⊕a_i ⊕h_i]W_x + b_x)$$
+https://latex.codecogs.com/gif.latex?x_i%20%3D%20tanh%28%5Bt_i%20%5Coplus%20a_i%20%5Coplus%20h_i%5DW_x%20&plus;%20b_x%29
 
 ### Multi-layer attention with Kernel filters
 
