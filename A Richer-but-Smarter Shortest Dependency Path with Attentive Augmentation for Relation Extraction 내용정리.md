@@ -54,7 +54,7 @@
 - 단순한 SDP구조는 SDP에 나타나지 않는 유용한 정보가 있어서 약점이 된다.
 - 이러한 놓친 정보들은 관계를 더 정확하게 나타내기 위해 활용 될 수 있다.
 
-![](.\png\캡처.PNG)
+![](./png/캡처.PNG)
 
 (i) We put the soured [cream]e1 in the butter [churn]e2 and started stirring it.
 (ii) The agitating [students]e1 also put up a [barricade]e2 on the Dhaka-Mymensingh highway.
@@ -65,13 +65,13 @@
 
 ## 4. Proposed Model
 
-![](.\png\캡처1.PNG)
+![](./png/캡처1.PNG)
 
 RbSP의 전체 모델
 
 ### SDP Representation
 
-![](.\png\캡처2.PNG)
+![](./png/캡처2.PNG)
 
 - dependency relation을 위해 dependency type과 dependency direction을 concatenate해서 embedding을 형성
 - 최종적으로 D-dimensional representation
@@ -96,5 +96,5 @@ $$
 
 - 정확환 augmented information을 child nodes로 부터 뽑기 위해 multi-layer attention with kernel filters 구조를 제안한다.
 
-![](.\png\캡처3.PNG)
+![](./png/캡처3.PNG)
 
