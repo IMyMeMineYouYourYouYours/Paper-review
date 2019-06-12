@@ -76,9 +76,7 @@ RbSP의 전체 모델
 - dependency relation을 위해 dependency type과 dependency direction을 concatenate해서 embedding을 형성
 - 최종적으로 D-dimensional representation
 
-$$
-d_i = tanh([d_i^{typ}⊕d_i^{dir}]W_d+b_d)
-$$
+$$d_i = tanh([d_i^{typ}⊕d_i^{dir}]W_d+b_d)$$
 
 - token representation을 위해 4개 타입의 embedding을 이용한다.
   - ___Pre-trained fastText embeddings___
@@ -88,9 +86,7 @@ $$
 
 - 최종적으로 X-dimensional vector형태의 representation이 된다.
 
-$$
-x_i = tanh([t_i ⊕a_i ⊕h_i]W_x + b_x)
-$$
+$$x_i = tanh([t_i ⊕a_i ⊕h_i]W_x + b_x)$$
 
 ### Multi-layer attention with Kernel filters
 
